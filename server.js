@@ -11,7 +11,7 @@ const app = express();
 
 //here u put ur moongose connect data
 mongoose.connect(
-    'mongodb+srv://Anwar:PASSWORDDB@hassanat.fvbzq.mongodb.net/hassanat?retryWrites=true&w=majority',
+    'mongodb+srv://Anwar:Anwar123@hassanat.fvbzq.mongodb.net/hassanat?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
