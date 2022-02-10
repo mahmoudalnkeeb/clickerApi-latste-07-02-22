@@ -1,6 +1,6 @@
 'use strict'
 window.addEventListener('load',() => {
-  let ws = new WebSocket('ws://thepraise.onrender.com:5000');
+  let ws = new WebSocket('https://thepraise.onrender.com:5000');
 
   const showRank = document.querySelector(".show_rank");
   const rankList = document.querySelector(".rank");
