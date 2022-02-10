@@ -49,12 +49,10 @@ io.on('connection', (socket) => {
 
     socket.on('start', function (infor) {
         let info = JSON.parse(infor);
-        console.log(info)
         function getInfo(info) {
             (async () => {
                 //Get user country and user country clicks
                 let UserCountry = await countries.getUserCountry(info)
-                console.log(UserCountry);
                 socket.emit("UserCountry", UserCountry);
             })(); 
         }
