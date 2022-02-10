@@ -77,7 +77,7 @@ wss.on('connection', (socket) => {
 
 
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public/')));
 
 app.get("/" , (req, res) => {
     res.render("index.ejs");
