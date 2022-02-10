@@ -79,10 +79,14 @@ window.addEventListener('load',() => {
     }
 
     document.querySelector('.counter').innerText = 0;
-    socket.emit("start", JSON.stringify(info));
-  }
-  init();
+  
+      socket.emit("start", JSON.stringify(info));
 
+  }
+
+  setTimeout(() => {
+  init();
+  }, 500);
   
 
   click.addEventListener('click', () => {
