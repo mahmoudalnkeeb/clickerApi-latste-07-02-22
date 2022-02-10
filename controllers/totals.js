@@ -16,7 +16,7 @@ module.exports = {
             { $inc: { total_clicks: info.user_clicks } },
             options,
             function (error, result) {
-                if (error) return;
+                if (error) return error;
                 // do something with the document
             }
         );

@@ -12,6 +12,7 @@ module.exports = {
         return await countries.find();
     },
     async getUserCountry(info) {
+        
         try {
             const country = await countries.findOne({ country_code: info.user_country});
             return JSON.stringify({
@@ -31,8 +32,7 @@ module.exports = {
             options,
             function (error, result) {
                 if (error) {
-                    res.status(400);
-                    return error;
+                    console.log(error)
                 }
             }
         );

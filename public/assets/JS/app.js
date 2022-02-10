@@ -1,6 +1,8 @@
 'use strict'
+
 window.addEventListener('load',() => {
-  let ws = new WebSocket('https://thepraise.onrender.com:5000');
+  //let ws = new WebSocket('https://thepraise.onrender.com:5000');
+  let socket = io.connect("localhost:3000");
 
   const showRank = document.querySelector(".show_rank");
   const rankList = document.querySelector(".rank");
@@ -66,8 +68,7 @@ window.addEventListener('load',() => {
     }
   });
 
-            
-          
+
   function init() {
     info = {
       type: "start",
@@ -78,13 +79,10 @@ window.addEventListener('load',() => {
     }
 
     document.querySelector('.counter').innerText = 0;
-    ws.send(JSON.stringify(info));
-
+    socket.emit("start", JSON.stringify(info));
   }
+  init();
 
-  setTimeout(() => {
-    init();
-  }, 300);
   
 
   click.addEventListener('click', () => {
@@ -95,51 +93,57 @@ window.addEventListener('load',() => {
       user_clicks:  1,
       user_city: sessionStorage.getItem('city'),
     }
-    ws.send(JSON.stringify(info));
+    socket.emit("click", JSON.stringify(info));
   })
 
 
-  ws.onmessage = function (info) {
-      let information = JSON.parse(info.data);
 
-       //Get info about Total Clicks
-        if (information.type == "totalClicks") {
-          document.getElementById('TotalClicks').innerText = information.clicks;
-        }
+  //Get info about Total Clicks
+  socket.on("TotalClicks", (information) => {
+    document.getElementById('TotalClicks').innerText = JSON.parse(information).clicks;
+  });
 
-        //Get info about User country and user country clicks
-        if (information.type == "userCountry") {
-          document.querySelector('.country').innerText = JSON.parse(information.UserCountry).name;
-          document.getElementById('country_clicks').innerText = JSON.parse(information.UserCountry).clicks;
-        }
+  //Get info about User country and user country clicks
+  socket.on("UserCountry", (information) => {
+    document.querySelector('.country').innerText = JSON.parse(information).name;
+    document.getElementById('country_clicks').innerText = JSON.parse(information).clicks;
+  });
 
-      //Get info about all Country and statistics
-      if (information.type == "countries") {
-        let ul = document.querySelector('.top_list');
-        let top = information.Countries;
-        while(ul.firstChild){
-          ul.firstChild.remove();
-        }
-
-        top.forEach(item => {
-          if (item.country_name != undefined || item.country_name != null) {
-            let li = document.createElement('li');
-            li.id = item.country_code;
-            li.innerHTML = item.country_name + '  : ' + item.country_clicks;
-            li.className = " list-item";
-            ul.appendChild(li);
-          }
-        });
-      }
-
-
+  socket.on("Countries", (information) => {
+    let ul = document.querySelector('.top_list');
+    let top = JSON.parse(information).Countries;
+    while(ul.firstChild){
+      ul.firstChild.remove();
     }
 
+    top.forEach(item => {
+      if (item.country_name != undefined || item.country_name != null) {
+        let li = document.createElement('li');
+        li.id = item.country_code;
+        li.innerHTML = item.country_name + '  : ' + item.country_clicks;
+        li.className = " list-item";
+        ul.appendChild(li);
+      }
+    });
+  });
+
+
     setInterval(() => {
-      ws.send(JSON.stringify({type: "update", user_country: sessionStorage.getItem('country')}));
+      socket.send(JSON.stringify({type: "update", user_country: sessionStorage.getItem('country')}));
     }, 1000);
 
+
+
+
+// client-side
+socket.on("info", (arg) => {
+  console.log(arg); // world
 });
+
+
+
+});
+
 
 
 
