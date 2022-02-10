@@ -2,7 +2,7 @@
 
 window.addEventListener('load',() => {
   //let ws = new WebSocket('https://thepraise.onrender.com:5000');
-  let socket = io.connect("https://thepraise.onrender.com:3000");
+  let socket = io.connect();
 
   const showRank = document.querySelector(".show_rank");
   const rankList = document.querySelector(".rank");
