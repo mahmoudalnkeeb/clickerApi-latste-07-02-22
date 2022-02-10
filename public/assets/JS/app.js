@@ -1,6 +1,6 @@
 'use strict'
 window.addEventListener('load',() => {
-  let ws = new WebSocket('ws://192.168.1.4:5000');
+  let ws = new WebSocket('ws://localhost:5000');
 
   const showRank = document.querySelector(".show_rank");
   const rankList = document.querySelector(".rank");
