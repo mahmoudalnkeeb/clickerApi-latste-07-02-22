@@ -1,34 +1,33 @@
 const countries = require('../models/countries');
 
 module.exports = {
-    async getTopCountries(req, res) {
+    async getTopCountries() {
         const countriesAPI = await countries.find();
         let top = countriesAPI.sort((a, b) => {
             return b.country_clicks - a.country_clicks;
         });
-        res.send(top.slice(0, 30));
+        return top.slice(0, 30);
     },
-    async getCountries(req, res) {
-        res.send(await countries.find());
+    async getCountries() {
+        return await countries.find();
     },
-    async getUserCountry(req, res) {
+    async getUserCountry(info) {
         try {
-            const country = await countries.findOne({
-                country_code: req.params.code,
-            });
-            res.status(200).json({
+            const country = await countries.findOne({ country_code: info.user_country});
+            return JSON.stringify({
                 name: country.country_name,
-                clicks: country.country_clicks,
-            });
+                clicks: country.country_clicks
+            })
+            
         } catch (err) {
             throw err;
         }
     },
-    updateCountries(req, res) {
+    updateCountries(info) {
         let options = { upsert: true, new: true, setDefaultsOnInsert: true };
         countries.findOneAndUpdate(
-            { country_code: req.body.country },
-            { $inc: { country_clicks: req.body.clicks } },
+            { country_code: info.user_country },
+            { $inc: { country_clicks: info.user_clicks } },
             options,
             function (error, result) {
                 if (error) {

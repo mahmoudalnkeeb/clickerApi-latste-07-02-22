@@ -1,0 +1,231 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", "Tajawal", sans-serif;
+}
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  --stat-bg-clr: rgba(255, 255, 255, 0.7);
+  --main-bg-clr: #2d4a3f;
+  --circle-bg-clr: #fff;
+  --main-clr: #000;
+  --stat-clr: #0a4c2b;
+  /********/
+
+  width: 100vw;
+  height: 100vh;
+  background: #1d976c;
+  background: -webkit-linear-gradient(to top, #93f9b9, #1d976c);
+  background: linear-gradient(to top, #93f9b9, #1d976c);
+  font-size: 16px;
+}
+
+#style-2::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+#style-2::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+#style-2::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #0a4c2b;
+}
+
+body.dark {
+  --stat-bg-clr: rgba(14, 14, 14, 0.7);
+  --main-bg-clr: #000000;
+  --circle-bg-clr: transparent;
+  --main-clr: rgb(255, 255, 255);
+  --stat-clr: #ffffff;
+  background-image: url("../img/bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.container.cover {
+  background-color: #1d976c64;
+}
+header {
+  width: 100%;
+  height: 10%;
+}
+ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  font-size: 1.4em;
+  padding-top: 20px;
+  padding-inline: 15px;
+  font-weight: 400;
+}
+.bold {
+  font-weight: 600;
+}
+.logo,
+.title {
+  color: var(--main-clr);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.logo:hover,
+.title:hover {
+  transform: scale(1.1);
+}
+.circle {
+  width: 400px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: absolute;
+  background-color: var(--circle-bg-clr);
+  top: -200px;
+  right: -200px;
+  z-index: -1;
+}
+.app {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.stat {
+  background-color: var(--stat-bg-clr);
+  width: 60%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: var(--stat-clr);
+  box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 20px;
+  transition: 0.5s;
+}
+
+.stat:hover {
+  box-shadow: rgba(0, 0, 0, 0.747) 2px 5px 15px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.stat:hover {
+  background-color: rgba(121, 121, 121, 0.418);
+}
+
+h3,
+p {
+  transition: 0.3s;
+}
+.stat:hover > h3,
+.stat:hover > p {
+  transform: scale(1.1);
+}
+
+.counter {
+  font-size: 3em;
+  color: var(--main-clr);
+}
+.tsbeeh {
+  width: 60%;
+  height: 70px;
+  outline: 0;
+  border: 0;
+  background: var(--main-bg-clr);
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.tsbeeh:hover {
+  background: rgba(14, 14, 14, 0.925);
+}
+footer {
+  width: 100%;
+  height: 10%;
+  background-color: var(--main-bg-clr);
+  border-radius: 20px 20px 0 0;
+}
+.rank {
+  display: none;
+  width: 90%;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  background-color: #0a4c2b;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(to left, #cbecc8ea, #e0f9dcf1);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -5px 15px;
+  transition: all 0.4s ease-in-out;
+}
+.rank.show {
+  display: block;
+  animation: ShowingOpacity 0.2s ease-in;
+}
+
+.rank h3 {
+  color: #1d976c;
+  width: 100%;
+  text-align: center;
+}
+.rank ul {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-y: scroll;
+  font-weight: 300;
+}
+.btns {
+  color: #fff;
+  width: 50%;
+  margin-inline: auto;
+  cursor: pointer;
+}
+.toggle_mode,
+.show_rank {
+  transition: 0.5s;
+}
+.toggle_mode:hover {
+  transform: scale(1.2);
+}
+.show_rank:hover {
+  transform: scale(1.2);
+}
+
+@keyframes ShowingOpacity {
+  0% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

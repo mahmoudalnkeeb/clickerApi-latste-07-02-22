@@ -18,15 +18,14 @@ module.exports = {
         }
     },
 
-    updateCities(req, res) {
+    updateCities(info) {
         let options = { upsert: true, new: true, setDefaultsOnInsert: true };
         cities.findOneAndUpdate(
-            { _id: req.body.city },
-            { $inc: { city_clicks: req.body.clicks } },
+            { _id: info.user_city },
+            { $inc: { city_clicks: info.user_clicks } },
             options,
             function (error, result) {
                 if (error) {
-                    res.status(400);
                     return error;
                 }
             }

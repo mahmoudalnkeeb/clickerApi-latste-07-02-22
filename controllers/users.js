@@ -3,9 +3,9 @@ const User = require('../models/User');
 
 
 module.exports = {
-    async startApi(req, res) {
+    async startApi(info) {
         var query = User.find({
-            user_ip: req.body.ip,
+            user_ip: info.user_ip,
         })
             .lean()
             .limit(1);
@@ -20,9 +20,9 @@ module.exports = {
             if (!result.length) {
                 // Create a new one
                 const newUser = new User({
-                    user_ip: req.body.ip,
-                    user_clicks: req.body.clicks,
-                    user_country: req.body.country,
+                    user_ip: info.user_ip,
+                    user_clicks: info.user_clicks,
+                    user_country: info.user_country,
                 });
                 savedUser = await newUser.save();
                 savedUser.save(function (error) {
@@ -31,21 +31,21 @@ module.exports = {
                     }
                 });
             } else {
-                savedUser = await User.findOne({ users_id: req.body.ip });
-                res.status(200).json({
+                savedUser = await User.findOne({ users_id: info.user_ip });
+                return JSON.stringify({
                     ip: savedUser.user_ip,
                     clicks: savedUser.user_clicks,
-                    country: savedUser.user_country,
-                });
+                    country: savedUser.user_country
+                })
             }
         });
     },
-    sendUserClicks(req, res) {
-        var query = { user_ip: req.body.ip },
+    sendUserClicks(info) {
+        var query = { user_ip: info.user_ip },
             update = {
-                user_ip: req.body.ip,
-                $inc: { user_clicks: req.body.clicks },
-                user_country: req.body.country,
+                user_ip: info.user_ip,
+                $inc: { user_clicks: info.user_clicks },
+                user_country: info.user_country,
             },
             options = { upsert: true, new: true, setDefaultsOnInsert: true };
 

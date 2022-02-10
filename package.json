@@ -1,26 +1,21 @@
 {
-  "name": "clickerapi",
+  "name": "praiseclick-v3",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.1",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "prettier": "prettier --write **/**/*.js"
+    "start": "nodemon server.js"
   },
-  "dependencies": {
-    "body-parser": "^1.19.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.2",
-    "mongoose": "^6.2.0",
-    "socket.io": "^4.4.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15",
-    "prettier": "^2.5.1"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC"
 }

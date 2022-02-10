@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThePraise</title>
+    <link rel="stylesheet" href="assets/CSS/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" crossorigin="anonymous" />
+  </head>
+  <body>
+    <div class="container light">
+      <div class="circle"></div>
+      <header>
+        <ul>
+          <li class="logo">The<span class="bold">Praise</span></li>
+          <li class="title"><span class="bold">تسبيح</span> أون لاين</li>
+        </ul>
+      </header>
+      <main class="app">
+        <div class="stat">
+          <h3>عالميا</h3>
+          <p id="TotalClicks"> </p>
+        </div>
+        <div class="stat">
+          <h3>دولتك : <span class="country"> </span></h3>
+          <p id="country_clicks"> </p>
+        </div>
+        <div class="stat">
+          <h3>مدينتك : <span class="region">القاهره</span></h3>
+          <p></p>
+        </div>
+        <div id="clicks" class="counter">0</div>
+        <button id="click" class="tsbeeh" >سُبْحَانَ اللهِ وَبِحَمْدِهِ</button>
+      </main>
+
+      <footer>
+        <div class="rank">
+          <h3>الدول الأكثر تسبيحا</h3>
+          <ul id="style-2" class="top_list visable"></ul>
+        </div>
+        <ul class="btns">
+          <li class="toggle_mode"><i class="fas fa-toggle-off fa-lg"></i></li>
+          <li class="show_rank"><i class="fas fa-bars fa-lg"></i></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="/assets/JS/app.js"></script>
+   
+  </body>
+</html>
