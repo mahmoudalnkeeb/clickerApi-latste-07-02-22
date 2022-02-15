@@ -94,6 +94,4 @@ app.get("/" , (req, res) => {
     res.render("index.ejs");
 });
 
-server.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is up on port ${port}!`)
-  })
+server.listen(process.env.PORT || 3000);
