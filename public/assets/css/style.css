@@ -82,15 +82,11 @@ ul {
 .bold {
   font-weight: 600;
 }
-.logo,
+.logo {
+  color: #e1e1e1;
+}
 .title {
   color: var(--main-clr);
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-}
-.logo:hover,
-.title:hover {
-  transform: scale(1.1);
 }
 .circle {
   width: 400px;
@@ -126,23 +122,23 @@ ul {
   transition: 0.5s;
 }
 
+
+
 .stat:hover {
   box-shadow: rgba(0, 0, 0, 0.747) 2px 5px 15px;
   cursor: pointer;
-  transition: 0.5s;
+  transition: .5s;
 }
 
-.stat:hover {
-  background-color: rgba(121, 121, 121, 0.418);
+.stat:first-of-type:hover {
+  background-color: rgb(51 238 28);
 }
 
-h3,
-p {
-  transition: 0.3s;
-}
-.stat:hover > h3,
-.stat:hover > p {
-  transform: scale(1.1);
+.stat:nth-of-type(2):hover {
+  background-color: rgb(164 251 255);
+} 
+.stat:nth-of-type(3):hover {
+  background-color:rgb(255 189 1);
 }
 
 .counter {
@@ -187,9 +183,7 @@ footer {
 }
 .rank.show {
   display: block;
-  animation: ShowingOpacity 0.2s ease-in;
 }
-
 .rank h3 {
   color: #1d976c;
   width: 100%;
@@ -218,14 +212,4 @@ footer {
 }
 .show_rank:hover {
   transform: scale(1.2);
-}
-
-@keyframes ShowingOpacity {
-  0% {
-    opacity: 0.1;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
